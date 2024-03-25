@@ -3,13 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { setUser } from "../redux/slices/authSlice";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const initialValues = { email: "", password: "" };
 
   const validationSchema = Yup.object({
@@ -27,7 +23,7 @@ const Login = () => {
         values
       );
       if (res.status === 200) {
-        dispatch(setUser(res.data.data));
+        setUser(res.data.data);
         toast.success(res.data.message);
         navigate("/dashboard");
       }

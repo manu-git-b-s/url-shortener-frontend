@@ -1,13 +1,22 @@
 # URL Shortener React Project
 
-This project is a URL shortener application built with React, Vite, Axios, Formik, Yup, React Router DOM, and React Toastify. The application allows users to shorten long URLs into more manageable and shareable links.
+Welcome to the URL Shortener Project! This repository contains the source code and documentation for a web application built with React, Bootstrap, Formik, Axios, React Toastify, HTML, CSS, JS, and Yup. The project aims to provide a user-friendly interface for shortening URLs and managing shortened links.
 
 ## Features
 
-- **URL Shortening**: Users can input long URLs and generate shortened versions.
-- **Form Validation**: Input fields are validated using Formik and Yup to ensure data integrity.
-- **Navigation**: React Router DOM is used for client-side routing, allowing seamless navigation between pages.
-- **Notification** System: React Toastify provides notifications for actions such as successful URL shortening or form submission errors.
+- **URL Shortening**: Allows users to shorten long URLs into shorter, more manageable links.
+- **Custom Short URLs**: Provides the option for users to customize the shortened URLs if desired.
+- **Notification**: Utilizes React Toastify for displaying notifications to users.
+- **Form Validation**: Implements form validation using Yup to ensure data integrity and accuracy.
+- **Responsive Design**: Utilizes Bootstrap for creating a responsive and mobile-friendly user interface.
+
+## Usage
+
+Once the project is set up and running, users can access the following features:
+
+1. **URL Shortening**: Users can shorten long URLs into shorter, more manageable links.
+2. **Custom Short URLs**: Users can customize the shortened URLs if desired.
+3. **Notification**: Users receive notifications for successful URL shortening and other relevant actions.
 
 ## Dependencies
 
@@ -21,29 +30,17 @@ This project is a URL shortener application built with React, Vite, Axios, Formi
 
 ## Getting Started
 
-To get started with the password reset project, follow these steps:
+To get started with the URL Shortener Project, follow these steps:
 
-1. **Clone the Repository**: Clone this repository to your local machine using `git clone https://github.com/your-username/password-reset-project.git`
+1. **Clone the Repository**: Clone this repository to your local machine using `git clone https://github.com/manu-git-b-s/url-shortener-frontend.git`.
 
 2. **Install Dependencies**: Install the necessary dependencies by running `npm install`.
 
-3. **Configuration**: Configure the project settings according to your environment, including API endpoints, email configuration for sending password reset links, and any other relevant settings.
+3. **Start the Application**: Start the application by running `npm start`. This will launch the project in your default web browser.
 
-4. **Start the Application**: Start the application by running `npm run dev`. This will launch the project in your default web browser.
+4. **Testing**: Test the functionality thoroughly to ensure it meets your requirements and works as expected.
 
-5. **Testing**: Test the functionality thoroughly to ensure it meets your requirements and works as expected.
-
-6. **Customization**: Customize the project as needed to integrate it with your existing application or to add additional features.
-
-## Usage
-
-- Enter a URL into the input field.
-- Click the "Shorten" button to generate a shortened URL.
-- Shortened URLs are displayed below the input field.
-- Click on a shortened URL to copy it to the clipboard.
-- Navigation between pages is handled by React Router DOM.
-- Form validation is done with Formik and Yup.
-- Notifications are shown using React Toastify.
+5. **Customization**: Customize the project as needed to integrate it with your existing application or to add additional features.
 
 ## Contributing
 
@@ -60,6 +57,6 @@ Contributions are welcome! If you'd like to contribute to the project, please fo
 
 For any questions or issues, please open an issue on the GitHub repository or contact [manupriyan722@gmail.com].
 
-## Deployed Link
+## Deployed Netlify Link
 
-[URL Shortener App](https://manu-password-reset.netlify.app/)
+[URL Shortener Project](https://password-reset-api-gs13.onrender.com)

@@ -1,11 +1,8 @@
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { setUser } from "../redux/slices/authSlice";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
       <div className="container">
         <a className="navbar-brand" href="#">
           DashBoard
@@ -34,7 +31,7 @@ const Navbar = () => {
                 All Url
               </a>
             </Link>
-            <Link className="link" to="/" onClick={() => dispatch(setUser({}))}>
+            <Link className="link" to="/">
               <a className="nav-link text-dark" aria-current="page" href="#">
                 Logout
                 <i className="ms-2 fa-solid fa-right-from-bracket"></i>

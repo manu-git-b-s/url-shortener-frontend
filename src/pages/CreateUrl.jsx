@@ -1,17 +1,10 @@
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import { useSelector } from "react-redux";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
-const CreateUrl = () => {
-  const [tableData, setTableData] = useState([]);
-  // const [newData, setNewData] = useState([]);
-
-  // const email = useSelector((state) => state.auth.user.email);
-
+const CreateUrl = ({ user }) => {
   const initialValues = { longUrl: "" };
 
   const validationSchema = Yup.object({
@@ -19,35 +12,21 @@ const CreateUrl = () => {
   });
 
   const onSubmit = async (values) => {
-    // await axios
-    //   .post("http://localhost:8080/api/url/createURL", {
-    //     ...values,
-    //     email,
-    //   })
-    //   .then((res) => toast.success(res.data.message));
+    await axios
+      .post("http://localhost:8080/api/url/createURL", {
+        ...values,
+        email: user.email,
+      })
+      .then((res) => toast.success(res.data.message));
 
     console.log(values);
-
-    // setNewData(res.data.data);
   };
-
-  // console.log(newData);
 
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
   });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      let res = await axios.post("http://localhost:8080/api/url/all-urls", {
-        email: "manupriyan722@gmail.com",
-      });
-      setTableData(res.data.data);
-    };
-    fetchData();
-  }, []);
 
   return (
     <div>
@@ -81,33 +60,6 @@ const CreateUrl = () => {
             </button>
           </div>
         </form>
-
-        <table className="table table-striped table-hover table-responsive ">
-          <thead>
-            <tr>
-              <th>Full URL</th>
-              <th>Short URL</th>
-              <th>Clicks</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <a href={item.longUrl} target="_blank">
-                    {item.longUrl}
-                  </a>
-                </td>
-                <td>
-                  <a href={item.longUrl} target="_blank">
-                    {item.shortUrl}
-                  </a>
-                </td>
-                <td>{item.clicked}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
     </div>
   );
