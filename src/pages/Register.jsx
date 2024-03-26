@@ -29,7 +29,7 @@ const Register = () => {
   const onSubmit = async (values) => {
     try {
       let res = await axios.post(
-        "http://localhost:8080/api/user/register",
+        "https://url-shortener-backend-ok26.onrender.com/api/user/register",
         values
       );
 

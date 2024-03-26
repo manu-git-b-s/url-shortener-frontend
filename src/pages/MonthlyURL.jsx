@@ -8,9 +8,12 @@ const MonthlyURL = ({ user }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.post("http://localhost:8080/api/url/monthly", {
-        email: user.email,
-      });
+      let res = await axios.post(
+        "https://url-shortener-backend-ok26.onrender.com/api/url/monthly",
+        {
+          email: user.email,
+        }
+      );
       setMonthlyData(res.data.data);
     };
     fetchData();

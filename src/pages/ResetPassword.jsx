@@ -19,7 +19,7 @@ const ResetPassword = () => {
   async function validateToken() {
     try {
       let res = await axios.get(
-        "http://localhost:8080/api/user/list-all-users"
+        "https://url-shortener-backend-ok26.onrender.com/api/user/list-all-users"
       );
       if (res.data && res.data.users) {
         console.log(res.data);
@@ -48,7 +48,7 @@ const ResetPassword = () => {
   const onSubmit = async (values) => {
     try {
       let res = await axios.put(
-        "http://localhost:8080/api/user/resetPassword",
+        "https://url-shortener-backend-ok26.onrender.com/api/user/resetPassword",
         {
           ...values,
           email,
