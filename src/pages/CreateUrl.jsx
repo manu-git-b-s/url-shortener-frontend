@@ -15,10 +15,13 @@ const CreateUrl = ({ user }) => {
 
   const onSubmit = async (values) => {
     try {
-      let res = await axios.post("http://localhost:8080/api/url/createURL", {
-        ...values,
-        email: user.email,
-      });
+      let res = await axios.post(
+        "https://url-shortener-backend-ok26.onrender.com/api/url/createURL",
+        {
+          ...values,
+          email: user.email,
+        }
+      );
       if (res.status === 200) {
         setCreatedURL(res.data.data);
         toast.success(res.data.message);
@@ -31,7 +34,10 @@ const CreateUrl = ({ user }) => {
   };
 
   const handleClick = async (id) => {
-    await axios.post("http://localhost:8080/api/url/click-count", { id });
+    await axios.post(
+      "https://url-shortener-backend-ok26.onrender.com/api/url/click-count",
+      { id }
+    );
   };
 
   const formik = useFormik({

@@ -59,4 +59,4 @@ For any questions or issues, please open an issue on the GitHub repository or co
 
 ## Deployed Netlify Link
 
-[URL Shortener Project](https://password-reset-api-gs13.onrender.com)
+[URL Shortener Project](https://manu-url-shortener.netlify.app/)

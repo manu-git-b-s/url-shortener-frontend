@@ -19,10 +19,11 @@ const Login = ({ setUser }) => {
   const onSubmit = async (values) => {
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/user/login",
+        "https://url-shortener-backend-ok26.onrender.com/api/user/login",
         values
       );
       if (res.status === 200) {
+        localStorage.setItem("user", res.data.data);
         setUser(res.data.data);
         toast.success(res.data.message);
         navigate("/dashboard");

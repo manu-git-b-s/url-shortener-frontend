@@ -17,7 +17,7 @@ const ForgotPassword = () => {
     const btn = document.getElementById("sendEmailBtn");
     try {
       let res = await axios.post(
-        "http://localhost:8080/api/user/forgotPassword",
+        "https://url-shortener-backend-ok26.onrender.com/api/user/forgotPassword",
         values
       );
       if (res.status === 201) {

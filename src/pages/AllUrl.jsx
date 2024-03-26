@@ -9,9 +9,12 @@ const AllUrl = ({ user }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.post("http://localhost:8080/api/url/today", {
-        email: user.email,
-      });
+      let res = await axios.post(
+        "https://url-shortener-backend-ok26.onrender.com/api/url/today",
+        {
+          email: user.email,
+        }
+      );
       setTableDataToday(res.data.data);
     };
     fetchData();
@@ -19,9 +22,12 @@ const AllUrl = ({ user }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.post("http://localhost:8080/api/url/monthly", {
-        email: user.email,
-      });
+      let res = await axios.post(
+        "https://url-shortener-backend-ok26.onrender.com/api/url/monthly",
+        {
+          email: user.email,
+        }
+      );
       setallURL(res.data.data);
     };
     fetchData();
