@@ -1,16 +1,28 @@
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { format } from "date-fns";
 
-const AllUrl = () => {
-  const [tableData, setTableData] = useState([]);
+const AllUrl = ({ user }) => {
+  const [tableDataToday, setTableDataToday] = useState([]);
+  const [allURL, setallURL] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.post("http://localhost:8080/api/url/all-urls", {
-        email: "manupriyan722@gmail.com",
+      let res = await axios.post("http://localhost:8080/api/url/today", {
+        email: user.email,
       });
-      setTableData(res.data.data);
+      setTableDataToday(res.data.data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.post("http://localhost:8080/api/url/monthly", {
+        email: user.email,
+      });
+      setallURL(res.data.data);
     };
     fetchData();
   }, []);
@@ -19,18 +31,20 @@ const AllUrl = () => {
     <div>
       <Navbar />
       <div className="container">
-        <h1 className="my-5 text-center">All Url</h1>
+        <h3 className="my-5">Total URL created by user:{allURL.length}</h3>
+        <h1 className="my-5 text-center">All Url's created by user</h1>
         <table className="table table-striped table-hover table-responsive ">
           <thead>
             <tr>
+              <th>Date</th>
               <th>Full URL</th>
               <th>Short URL</th>
-              <th>Clicks</th>
             </tr>
           </thead>
           <tbody>
-            {tableData.map((item, index) => (
+            {allURL.map((item, index) => (
               <tr key={index}>
+                <td>{format(new Date(item.createdAt), "dd/MM/yyyy")}</td>
                 <td>
                   <a href={item.longUrl} target="_blank">
                     {item.longUrl}
@@ -41,7 +55,37 @@ const AllUrl = () => {
                     {item.shortUrl}
                   </a>
                 </td>
-                <td>{item.clicked}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <h3 className="my-5">
+          Total URL created by user today:{tableDataToday.length}
+        </h3>
+        <h1 className="text-center my-5">All Url's created by user today</h1>
+        <table className="table table-striped table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Full URL</th>
+              <th>Short URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableDataToday.map((item, index) => (
+              <tr key={index}>
+                <td>{format(new Date(item.createdAt), "dd/MM/yyyy")}</td>
+                <td>
+                  <a href={item.longUrl} target="_blank">
+                    {item.longUrl}
+                  </a>
+                </td>
+                <td>
+                  <a href={item.longUrl} target="_blank">
+                    {item.shortUrl}
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -26,7 +26,7 @@ const ResetPassword = () => {
         console.log("data", res.data);
         const reqUser = res.data.users.find((user) => user.email === email);
         if (reqUser) {
-          const tokenCheck = reqUser.randomString === token;
+          const tokenCheck = reqUser.token === token;
           if (!tokenCheck) {
             navigate("/error");
             toast.error("token not matched");

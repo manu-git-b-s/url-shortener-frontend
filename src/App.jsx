@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CreateUrl from "./pages/CreateUrl";
 import AllUrl from "./pages/AllUrl";
 import { useState } from "react";
+import MonthlyURL from "./pages/MonthlyURL";
 
 function App() {
   const [user, setUser] = useState({});
@@ -21,8 +22,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route index path="/dashboard" element={<Dashboard user={user} />} />
+        <Route path="/dashboard" element={<Dashboard user={user} />} />
         <Route path="/create-url" element={<CreateUrl user={user} />} />
+        <Route path="/monthly-url" element={<MonthlyURL user={user} />} />
         <Route path="/all-url" element={<AllUrl user={user} />} />
       </Routes>
     </BrowserRouter>

@@ -3,8 +3,10 @@ import Navbar from "../components/Navbar";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const CreateUrl = ({ user }) => {
+  const [createdURL, setCreatedURL] = useState("");
   const initialValues = { longUrl: "" };
 
   const validationSchema = Yup.object({
@@ -12,14 +14,24 @@ const CreateUrl = ({ user }) => {
   });
 
   const onSubmit = async (values) => {
-    await axios
-      .post("http://localhost:8080/api/url/createURL", {
+    try {
+      let res = await axios.post("http://localhost:8080/api/url/createURL", {
         ...values,
         email: user.email,
-      })
-      .then((res) => toast.success(res.data.message));
+      });
+      if (res.status === 200) {
+        setCreatedURL(res.data.data);
+        toast.success(res.data.message);
+        formik.values.longUrl = "";
+      }
+    } catch (error) {
+      toast.error("Server error");
+      console.log(error.response);
+    }
+  };
 
-    console.log(values);
+  const handleClick = async (id) => {
+    await axios.post("http://localhost:8080/api/url/click-count", { id });
   };
 
   const formik = useFormik({
@@ -28,26 +40,27 @@ const CreateUrl = ({ user }) => {
     onSubmit,
   });
 
+  console.log(createdURL, "URL");
+
   return (
     <div>
       <Navbar />
       <div className="container p-5 my-5 rounded">
         <h1 className="text-center mb-5">URL Shortener</h1>
         <form
-          method="POST"
           className="my-5 p-5 text-dark bg-light"
-          onSubmit={onSubmit}
+          onSubmit={formik.handleSubmit}
         >
           <div className="mb-3">
             <label htmlFor="longUrl" className="form-label">
               Full Url
             </label>
             <input
-              required
               placeholder="Enter your url"
               type="text"
               className="form-control"
               id="longUrl"
+              name="longUrl"
               value={formik.values.longUrl}
               onChange={formik.handleChange}
             />
@@ -60,6 +73,18 @@ const CreateUrl = ({ user }) => {
             </button>
           </div>
         </form>
+
+        <h1>
+          {/* <a href={}></a> */}
+          Your generated short Id is{" "}
+          <a
+            href={createdURL.longUrl}
+            target="_blank"
+            onClick={() => handleClick(createdURL.urlId)}
+          >
+            {createdURL.shortUrl}
+          </a>
+        </h1>
       </div>
     </div>
   );
