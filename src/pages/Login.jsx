@@ -23,7 +23,8 @@ const Login = ({ setUser }) => {
         values
       );
       if (res.status === 200) {
-        localStorage.setItem("user", res.data.data);
+        localStorage.setItem("user", JSON.stringify(res.data.data.email));
+        console.log(res.data);
         setUser(res.data.data);
         toast.success(res.data.message);
         navigate("/dashboard");
