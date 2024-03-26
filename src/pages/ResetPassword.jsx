@@ -22,8 +22,6 @@ const ResetPassword = () => {
         "https://url-shortener-backend-ok26.onrender.com/api/user/list-all-users"
       );
       if (res.data && res.data.users) {
-        console.log(res.data);
-        console.log("data", res.data);
         const reqUser = res.data.users.find((user) => user.email === email);
         if (reqUser) {
           const tokenCheck = reqUser.token === token;
@@ -34,6 +32,7 @@ const ResetPassword = () => {
         }
       }
     } catch (error) {
+      toast.error("Internal server error");
       console.log(error);
     }
   }

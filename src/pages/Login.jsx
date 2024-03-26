@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const navigate = useNavigate();
   const initialValues = { email: "", password: "" };
 
@@ -23,9 +23,9 @@ const Login = ({ setUser }) => {
         values
       );
       if (res.status === 200) {
-        localStorage.setItem("user", JSON.stringify(res.data.data.email));
-        console.log(res.data);
-        setUser(res.data.data);
+        localStorage.setItem("email", res.data.data.email);
+        localStorage.setItem("fname", res.data.data.firstName);
+        localStorage.setItem("lname", res.data.data.lastName);
         toast.success(res.data.message);
         navigate("/dashboard");
       }

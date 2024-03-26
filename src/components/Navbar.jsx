@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("fname");
+    localStorage.removeItem("lname");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
       <div className="container">
@@ -22,22 +28,16 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ms-auto">
             <Link className="link " to="/create-url">
-              <a className="nav-link" aria-current="page" href="#">
-                CreateShort URL
-              </a>
+              <a className="nav-link">CreateShort URL</a>
             </Link>
             <Link className="link " to="/all-url">
-              <a className="nav-link" aria-current="page" href="#">
-                All Url
-              </a>
+              <a className="nav-link">All Url</a>
             </Link>
             <Link className="link " to="/monthly-url">
-              <a className="nav-link" aria-current="page" href="#">
-                Monthly Url
-              </a>
+              <a className="nav-link">Monthly Url</a>
             </Link>
-            <Link className="link" to="/">
-              <a className="nav-link" aria-current="page" href="#">
+            <Link className="link" to="/" onClick={handleLogout}>
+              <a className="nav-link">
                 Logout
                 <i className="ms-2 fa-solid fa-right-from-bracket"></i>
               </a>

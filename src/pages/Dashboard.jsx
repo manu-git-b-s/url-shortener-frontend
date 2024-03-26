@@ -1,12 +1,22 @@
 import Navbar from "../components/Navbar.jsx";
+import Redirect from "../components/Redirect.jsx";
 
-const Dashboard = ({ user }) => {
+const Dashboard = () => {
+  const fname = localStorage.getItem("fname") || "";
+  const lname = localStorage.getItem("lname") || "";
+  const email = localStorage.getItem("email") || "";
   return (
     <div>
-      <Navbar />
-      <h1 className="text-center mt-5">
-        Welcome to dashboard {user.firstName + " " + user.lastName}
-      </h1>
+      {email !== "" ? (
+        <>
+          <Navbar />
+          <h1 className="text-center mt-5">
+            Welcome to dashboard {fname + " " + lname}
+          </h1>
+        </>
+      ) : (
+        <Redirect />
+      )}
     </div>
   );
 };
